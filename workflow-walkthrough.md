@@ -4,7 +4,6 @@
 ## Generic programming is a way to write function and data types while making minimal assumptions (suposiciones minimas) about the type of data being used.
 ## Generic can be used to reduce functions to redundant code.
 
-![startProject](../master/assets/sketch1.png)  
 
 ### Example:
 
@@ -124,6 +123,94 @@ class BaseCustomCell: UITableViewCell {
 }
 
 ```
+
+## Create second generic type and use it into Generic TableViewCell
+
+
+### Steps
+
+1. Create `Model`  
+2. Base `TableViewCell` use the `generic type model`  
+3. `CustomTableViewCell` impement `BaseCustomCell` and the specific `Model`  
+
+```swift
+struct Model {
+    let strName : String?
+}
+
+// Base TableViewCell use a generic object model
+class BaseCustomCell<GenericModel>: UITableViewCell {
+    var item : GenericModel!    
+}
+
+// Custom set the model we need to use
+class CustomCell: BaseCustomCell<Model> {
+    override var item: Model!{
+        didSet{
+            textLabel?.text = item.strName
+        }
+    }
+}
+```
+
+4. `BaseTableViewController` implement `genericTableViewCell<useGenericTypeModel>`  
+
+```swift
+                                                                            // just specific use other generic type
+class BaseTableViewController<GenericCell: BaseCustomCell<GenericTypeModel>, GenericTypeModel>: UITableViewController 
+
+    var arrItems : [GenericTypeModel] = [GenericTypeModel]()  // MATCH BaseCustomCell<GenericTypeModel>
+
+
+    ...
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! BaseCustomCell<GenericTypeModel>  // MATCH BaseCustomCell<GenericTypeModel>
+   
+        cell.item = arrItems[indexPath.row]
+        
+        return cell
+        
+    }
+    
+    ...
+}
+
+```
+5. Implement in a custom class: `SomeListController: BaseTableViewController<CustomCellNeeds, ModelItNeeds>`
+
+```swift
+class SomeListController: BaseTableViewController<CustomCell, Model> {
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // What happent if you want to register diferent tableViewCell
+        // Use generic syntax code
+        
+        // we can overide the property  arrItems but ... we can use generic type
+        arrItems = [
+            Model(strName: "Primera person"),
+            Model(strName: "Segunda person")
+        ]
+    }
+    
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

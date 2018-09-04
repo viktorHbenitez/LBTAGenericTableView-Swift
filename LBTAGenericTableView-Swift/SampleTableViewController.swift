@@ -15,13 +15,13 @@ import UIKit
     Generic can be used to reduce functions to redundant code
  */
 
-// <T: UITableViewCell> Declare generic, we can change different tableViewCell
-class BaseTableViewController<GenericCell: UITableViewCell>: UITableViewController {
+// BaseCustomCell use <GenericTypeModel> with it is an object
+class BaseTableViewController<GenericCell: BaseCustomCell<GenericTypeModel>, GenericTypeModel>: UITableViewController {
     
     
     fileprivate let cellId = "IdCell"
     
-    var arrItems : [Any] = [Any]()
+    var arrItems : [GenericTypeModel] = [GenericTypeModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,12 +53,12 @@ class BaseTableViewController<GenericCell: UITableViewCell>: UITableViewControll
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
        
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! BaseCustomCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! BaseCustomCell<GenericTypeModel>
         
-        let item = arrItems[indexPath.row]
+//        let item = arrItems[indexPath.row]
 //        cell.textLabel?.text = "\(item)"
 
-        cell.item = item
+        cell.item = arrItems[indexPath.row]
         
         return cell
         
@@ -68,36 +68,33 @@ class BaseTableViewController<GenericCell: UITableViewCell>: UITableViewControll
     
 }
 
-class CustomYellowCell: UITableViewCell {
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        backgroundColor = .yellow
-    }
-    
+
+
+struct Model {
+    let strName : String?
 }
 
 
-class BaseCustomCell: UITableViewCell {
+// Base TableViewCell use a generic object
+class BaseCustomCell<GenericModel>: UITableViewCell {
     
-    var item : Any!{
+    var item : GenericModel!
+    
+}
+// Custom set the model we need to use
+class CustomCell: BaseCustomCell<Model> {
+    override var item: Model!{
         didSet{
-            textLabel?.text = item as? String
+            textLabel?.text = item.strName
         }
     }
     
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//
-//        backgroundColor = .green
-//    }
-    
 }
+
 
 // <CustomYellowCell> we can set generic tableViewCell
 // <model> we can set the numberofrow in generic syntax
-class SomeListController: BaseTableViewController<BaseCustomCell> {
+class SomeListController: BaseTableViewController<CustomCell, Model> {
     
     
     override func viewDidLoad() {
@@ -107,7 +104,10 @@ class SomeListController: BaseTableViewController<BaseCustomCell> {
         // Use generic syntax code
         
         // we can overide the property  arrItems but ... we can use generic type
-        arrItems = ["Generic", "methods", "types"]
+        arrItems = [
+            Model(strName: "Primera person"),
+            Model(strName: "Segunda person")
+        ]
     }
     
 }
