@@ -12,6 +12,8 @@
 		E45494B4213E002000EC8C0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E45494B2213E002000EC8C0B /* Main.storyboard */; };
 		E45494B6213E002100EC8C0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E45494B5213E002100EC8C0B /* Assets.xcassets */; };
 		E45494B9213E002100EC8C0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E45494B7213E002100EC8C0B /* LaunchScreen.storyboard */; };
+		E45494C1213E02D100EC8C0B /* SampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45494C0213E02D100EC8C0B /* SampleTableViewController.swift */; };
+		E45494C3213E141900EC8C0B /* workflow-walkthrough.md in Resources */ = {isa = PBXBuildFile; fileRef = E45494C2213E141900EC8C0B /* workflow-walkthrough.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		E45494B5213E002100EC8C0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E45494B8213E002100EC8C0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E45494BA213E002100EC8C0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E45494C0213E02D100EC8C0B /* SampleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleTableViewController.swift; sourceTree = "<group>"; };
+		E45494C2213E141900EC8C0B /* workflow-walkthrough.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "workflow-walkthrough.md"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,12 +58,14 @@
 		E45494AD213E002000EC8C0B /* LBTAGenericTableView-Swift */ = {
 			isa = PBXGroup;
 			children = (
+				E45494C2213E141900EC8C0B /* workflow-walkthrough.md */,
 				E45494AE213E002000EC8C0B /* AppDelegate.swift */,
 				E45494B0213E002000EC8C0B /* ViewController.swift */,
 				E45494B2213E002000EC8C0B /* Main.storyboard */,
 				E45494B5213E002100EC8C0B /* Assets.xcassets */,
 				E45494B7213E002100EC8C0B /* LaunchScreen.storyboard */,
 				E45494BA213E002100EC8C0B /* Info.plist */,
+				E45494C0213E02D100EC8C0B /* SampleTableViewController.swift */,
 			);
 			path = "LBTAGenericTableView-Swift";
 			sourceTree = "<group>";
@@ -124,6 +130,7 @@
 			files = (
 				E45494B9213E002100EC8C0B /* LaunchScreen.storyboard in Resources */,
 				E45494B6213E002100EC8C0B /* Assets.xcassets in Resources */,
+				E45494C3213E141900EC8C0B /* workflow-walkthrough.md in Resources */,
 				E45494B4213E002000EC8C0B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,6 +144,7 @@
 			files = (
 				E45494B1213E002000EC8C0B /* ViewController.swift in Sources */,
 				E45494AF213E002000EC8C0B /* AppDelegate.swift in Sources */,
+				E45494C1213E02D100EC8C0B /* SampleTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
